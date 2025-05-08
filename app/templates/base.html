@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de Password</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 2rem;
+        }
+
+        header, footer {
+            margin-bottom: 2rem;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Gestor de Password</h1>
+    <nav>
+        <a href="{{ url_for('main.index') }}">Inicio</a> |
+        <a href="{{ url_for('main.add_password') }}">Añadir</a> |
+        <a href="{{ url_for('main.list_passwords') }}">Ver contraseñas</a>
+    </nav>
+    <hr>
+</header>
+
+<main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div style="color: green;"><strong>{{ message }}</strong></div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <hr>
+    <p>&copy; {{ 2025 }} Gestor de Password</p>
+</footer>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
